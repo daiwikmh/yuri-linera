@@ -1,0 +1,84 @@
+// Contract addresses for Base Mainnet and Base Sepolia
+
+export const CHAIN_IDS = {
+  BASE_MAINNET: 8453,
+  BASE_SEPOLIA: 84532,
+} as const;
+
+// Token addresses
+export const TOKENS = {
+  [CHAIN_IDS.BASE_MAINNET]: {
+    USDC: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913',
+    USDT: '0xfde4C96c8593536E31F229EA8f37b2ADa2699bb2',
+  },
+  [CHAIN_IDS.BASE_SEPOLIA]: {
+    USDC: '0x036CbD53842c5426634e7929541eC2318f3dCF7e', // Aave testnet USDC
+    USDT: '0xf08A50178dfcDe18524640EA6618a1f965821715', // Mock USDT
+  },
+} as const;
+
+// Aave V3 contracts
+export const AAVE_CONTRACTS = {
+  [CHAIN_IDS.BASE_MAINNET]: {
+    POOL: '0xA238Dd80C259a72e81d7e4664a9801593F98d1c5',
+    POOL_DATA_PROVIDER: '0x2d8A3C5677189723C4cB8873CfC9C8976FDF38Ac',
+    UI_POOL_DATA_PROVIDER: '0x174446a6741300cD2E7C1b1A636Fee99c8F83502',
+  },
+  [CHAIN_IDS.BASE_SEPOLIA]: {
+    POOL: '0x07eA79F68B2B3df564D0A34F8e19D9B1e339814b',
+    POOL_DATA_PROVIDER: '0x2d8A3C5677189723C4cB8873CfC9C8976FDF38Ac',
+    UI_POOL_DATA_PROVIDER: '0x174446a6741300cD2E7C1b1A636Fee99c8F83502',
+  },
+} as const;
+
+// Morpho Blue Core Contracts (Base Mainnet)
+export const MORPHO_BLUE_CONTRACTS = {
+  [CHAIN_IDS.BASE_MAINNET]: {
+    MORPHO: '0xBBBBBbbBBb9cC5e90e3b3Af64bdAF62C37EEFFCb',
+    ADAPTIVE_CURVE_IRM: '0x46415998764C29aB2a25CbeA6254146D50D22687',
+    CHAINLINK_ORACLE_FACTORY: '0x2DC205F24BCB6B311E5cdf0745B0741648Aebd3d',
+    METAMORPHO_FACTORY: '0x2c3FE6D71F8d54B063411Abb446B49f13725F784',
+  },
+  [CHAIN_IDS.BASE_SEPOLIA]: {
+    MORPHO: '0x0000000000000000000000000000000000000000',
+    ADAPTIVE_CURVE_IRM: '0x0000000000000000000000000000000000000000',
+    CHAINLINK_ORACLE_FACTORY: '0x0000000000000000000000000000000000000000',
+    METAMORPHO_FACTORY: '0x0000000000000000000000000000000000000000',
+  },
+} as const;
+
+// MetaMorpho Vaults (ERC4626 wrappers for Morpho Blue)
+export const MORPHO_VAULTS = {
+  [CHAIN_IDS.BASE_MAINNET]: {
+    // Steakhouse USDC Vault
+    USDC: '0xBEEF01735c132Ada46AA9aA4c54623cAA92A64CB',
+    // Add USDT vault when available
+    USDT: '0x0000000000000000000000000000000000000000',
+  },
+  [CHAIN_IDS.BASE_SEPOLIA]: {
+    USDC: '0x0000000000000000000000000000000000000000', // Not available on testnet
+    USDT: '0x0000000000000000000000000000000000000000',
+  },
+} as const;
+
+// Morpho GraphQL API
+export const MORPHO_API_URL = 'https://blue-api.morpho.org/graphql';
+
+// Helper functions
+export function getTokenAddress(
+  chainId: number,
+  token: 'USDC' | 'USDT'
+): string {
+  return TOKENS[chainId as keyof typeof TOKENS]?.[token] || '';
+}
+
+export function getAavePoolAddress(chainId: number): string {
+  return AAVE_CONTRACTS[chainId as keyof typeof AAVE_CONTRACTS]?.POOL || '';
+}
+
+export function getMorphoVaultAddress(
+  chainId: number,
+  token: 'USDC' | 'USDT'
+): string {
+  return MORPHO_VAULTS[chainId as keyof typeof MORPHO_VAULTS]?.[token] || '';
+}
