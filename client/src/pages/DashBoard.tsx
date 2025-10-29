@@ -156,9 +156,17 @@ export default function DashboardOverview() {
 
         {/* Quick Actions */}
         <DashboardCard title="Quick Actions">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             <Button
               variant="default"
+              size="lg"
+              className="w-full"
+              onClick={() => navigate("/linera-market")}
+            >
+              🔗 Linera Market
+            </Button>
+            <Button
+              variant="outline"
               size="lg"
               className="w-full"
               onClick={() => navigate("/prediction-markets")}

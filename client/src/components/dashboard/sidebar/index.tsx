@@ -30,6 +30,7 @@ import DotsVerticalIcon from "@/components/icons/dots-vertical";
 import { Bullet } from "@/components/ui/bullet";
 import LockIcon from "@/components/icons/lock";
 import ChartLineIcon from "@/components/icons/chart-line";
+import BlockchainIcon from "@/components/icons/blockchain";
 
 import { useAccount, useConnect, useDisconnect } from "wagmi";
 
@@ -45,11 +46,12 @@ type DashboardSidebarProps = React.ComponentProps<typeof Sidebar> & {
 
 const navItems = [
   { title: "Overview", url: "/", icon: BracketsIcon, locked: false },
+  { title: "Linera Market", url: "/linera-market", icon: BlockchainIcon, locked: false },
+  { title: "Market Admin", url: "/linera-market/manage", icon: GearIcon, locked: false },
   { title: "Prediction Markets", url: "/prediction-markets", icon: ChartLineIcon, locked: false },
   { title: "AI Bots", url: "/ai-bots", icon: CuteRobotIcon, locked: false },
   { title: "Create Pool", url: "/create-pool", icon: AtomIcon, locked: false },
   { title: "Canvas", url: "/canvas", icon: ProcessorIcon, locked: false },
-  { title: "Admin Settings", url: "/admin", icon: GearIcon, locked: true },
 ];
 
 function shortenAddress(addr: string) {
